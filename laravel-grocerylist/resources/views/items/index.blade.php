@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'items')
+@section('title', 'Items')
 
 @section('content')
 <h1>Items</h1>
@@ -9,6 +9,7 @@
         <tr>
             <th>Naam</th>
             <th>Beschrijving</th>
+            <th>Categorie</th>
             <th>Acties</th>
         </tr>
     </thead>
@@ -17,6 +18,7 @@
         <tr>
             <td>{{ $item->name }}</td>
             <td>{{ $item->description }}</td>
+            <td>{{ $item->category->name }}</td>
             <td>
                 <a href="{{ route('items.edit', $item->id) }}">Bewerken</a>
                 <form action="{{ route('items.destroy', $item->id) }}" method="POST">

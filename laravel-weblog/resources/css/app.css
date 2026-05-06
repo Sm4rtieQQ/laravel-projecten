@@ -9,3 +9,21 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@layer components {
+    .h1 {
+        @apply mb-6 text-xl font-bold;
+    }
+
+    .navlink {
+        @apply p-2 rounded-md hover:bg-green-400;
+    }
+
+    .btn-submit {
+        @apply p-2 rounded-md bg-green-300 hover:bg-green-400 shadow-md;
+    }
+
+    .btn-cancel {
+        @apply p-2 rounded-md bg-red-300 hover:bg-red-400 shadow-md;
+    }
+}

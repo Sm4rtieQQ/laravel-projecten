@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
 use App\Models\Article;
 
-class ArticleController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $articles = Article::orderBy('created_at', 'desc')->get();
-        return view('articles.index', compact('articles'));
+        //
     }
 
     /**
@@ -21,29 +21,28 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Article $article)
     {
-        $article = new Article();
-        $article->name = $request->input('name');
-        $article->text = $request->input('text');
-        $article->save();
+        $comment = new Comment();
+        $comment->text = $request->input('newComment');
+        $comment->article_id = $article->id;
+        $comment->save();
 
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.show', $article);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Article $article)
+    public function show(string $id)
     {
-        $comments = $article->comments()->orderBy('created_at', 'desc');
-        return view('articles.show', compact('article', 'comments'));
+        //
     }
 
     /**
@@ -65,9 +64,9 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Article $article)
+    public function destroy(Comment $comment, Article $article)
     {
-        $article->delete();
-        return redirect()->route('articles.index');
+        $comment->delete();
+        return redirect()->route('articles.show', $article);
     }
 }

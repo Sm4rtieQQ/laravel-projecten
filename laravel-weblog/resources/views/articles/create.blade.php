@@ -17,6 +17,6 @@
         </div>
     </div>
     <button class="btn-submit" type="submit">Publiceer artikel</button>
-    <a class="btn-cancel" href="{{route('articles.index')}}">Annuleren</a>
+    <a class="btn-cancel" href="{{ route('articles.index')}}">Annuleren</a>
 </form>
 @endsection

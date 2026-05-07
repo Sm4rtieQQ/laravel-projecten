@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Comment;
+use App\Models\Article;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +19,7 @@ class CommentFactory extends Factory
     {
         return [
             'text' => fake()->text(200),
+            'article_id' => Article::inRandomOrder()->first()->id,
         ];
     }
 }

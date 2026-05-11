@@ -6,7 +6,7 @@
 <h1 class="h1">Nieuw artikel aanmaken</h1>
 <form action="{{route('articles.store')}}" method="POST">
     @csrf
-    <div class="my-4 bg-gray-200 rounded-xl shadow-md">
+    <div class="wrap">
         <div class="p-4 flex justify-between">
             <label class="font-bold" for="name">Titel</label>
             <input class="bg-white w-11/12" name="name" id="name" type="text" required />

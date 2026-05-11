@@ -9,6 +9,7 @@
 <a href="{{ route('articles.show', $article->id) }}">
     <div class=" my-6 p-4 bg-green-200 hover:bg-green-300 rounded-md shadow-lg">
         <h4 class="text-lg font-bold">{{ $article->name }}</h4>
+        <p>{{$article->user->name}}</p>
         <span class="text-sm italic">{{ $article->created_at->format('d-m-Y H:i') }}</span>
     </div>
 </a>

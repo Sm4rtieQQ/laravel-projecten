@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class UserController extends Controller
 {
     public function authenticate(Request $request): RedirectResponse
     {
@@ -24,6 +24,21 @@ class LoginController extends Controller
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('user.login');
+    }
+
+    public function dashboard()
+    {
+        return view('user.dashboard');
     }
 
     public function show()

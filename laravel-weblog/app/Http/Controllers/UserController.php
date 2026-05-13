@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -13,6 +15,9 @@ class UserController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+        ], [
+            'email.required' => 'A.u.b. een geldig email adres invoeren.',
+            'password.required' => 'A.u.b. een wachtwoord invoeren.',
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -22,7 +27,7 @@ class UserController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Email of wachtwoord onjuist.',
         ])->onlyInput('email');
     }
 
@@ -33,7 +38,24 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('user.login');
+        return redirect()->route('articles.index');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        return view('user.login');
     }
 
     public function dashboard()
@@ -44,5 +66,10 @@ class UserController extends Controller
     public function show()
     {
         return view('user.login');
+    }
+
+    public function register()
+    {
+        return view('user.register');
     }
 }

@@ -25,15 +25,21 @@
         @apply my-4 bg-gray-100 rounded-xl shadow-md p-4;
     }
 
+    .btn-submit,
+    .btn-cancel,
+    .btn-neutral {
+        @apply p-2 rounded-md shadow-md text-sm font-semibold mx-1 cursor-pointer;
+    }
+
     .btn-submit {
-        @apply p-2 rounded-md bg-green-300 hover:bg-green-400 shadow-md;
+        @apply bg-green-300 hover:bg-green-400;
     }
 
     .btn-cancel {
-        @apply p-2 rounded-md bg-red-300 hover:bg-red-400 shadow-md;
+        @apply bg-red-300 hover:bg-red-400;
     }
 
     .btn-neutral {
-        @apply p-2 rounded-md bg-gray-100 hover:bg-gray-200 shadow-md;
+        @apply bg-gray-200 hover:bg-gray-300;
     }
 }

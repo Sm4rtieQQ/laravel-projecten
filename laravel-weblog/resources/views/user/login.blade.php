@@ -5,7 +5,7 @@
 @section('content')
 
 <h1 class="h1">Inloggen</h1>
-<form action="{{route('user.auth')}}" method="post">
+<form action="{{route('user.auth')}}" method="POST">
     @csrf
     <div class="wrap">
         <div class="p-4 flex justify-between">
@@ -26,6 +26,6 @@
     </div>
 
     <button class="btn-submit" type="submit">Inloggen</button>
-    <a class="btn-neutral" href="{{route('user.register')}}">Registreren</a>
+    <a class="btn-neutral" href="{{route('register')}}">Registreren</a>
 </form>
 @endsection

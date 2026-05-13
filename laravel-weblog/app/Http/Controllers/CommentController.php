@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Article;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -32,6 +33,7 @@ class CommentController extends Controller
         $comment = new Comment();
         $comment->text = $request->input('newComment');
         $comment->article_id = $article->id;
+        $comment->user_id = Auth::id();
         $comment->save();
 
         return redirect()->route('articles.show', $article);
@@ -67,6 +69,6 @@ class CommentController extends Controller
     public function destroy(Comment $comment, Article $article)
     {
         $comment->delete();
-        return redirect()->route('articles.show', $article);
+        return redirect()->back();
     }
 }

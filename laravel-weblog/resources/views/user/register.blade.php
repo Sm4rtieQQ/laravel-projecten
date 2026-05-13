@@ -7,12 +7,12 @@
 
 @if ($errors->any())
 <div>
-    @foreach ($erros->all() as $error)
+    @foreach ($errors->all() as $error)
     <p> {{$error}} </p>
     @endforeach
 </div>
 @endif
-<form action="{{ route('user.store') }}" method="post">
+<form action="{{ route('user.store') }}" method="POST">
     @csrf
     <div class="wrap">
         <div class="p-4 flex justify-between">

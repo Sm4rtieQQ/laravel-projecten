@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
 
 class ArticleController extends Controller
@@ -32,6 +33,7 @@ class ArticleController extends Controller
         $article = new Article();
         $article->name = $request->input('name');
         $article->text = $request->input('text');
+        $article->user_id = Auth::id();
         $article->save();
 
         return redirect()->route('articles.index');
@@ -49,9 +51,10 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Article $article)
     {
-        //
+        $edit = true;
+        return view('articles.show', compact('article', 'edit'));
     }
 
     /**
@@ -67,7 +70,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        $article->comments()->delete();
         $article->delete();
-        return redirect()->route('articles.index');
+        return redirect()->back();
     }
 }

@@ -20,7 +20,7 @@ class ArticleFactory extends Factory
     {
         return [
             'name' => fake()->word(),
-            'text' => fake()->sentence(),
+            'text' => fake()->paragraph(),
             'user_id' => User::inRandomOrder()->first()->id,
         ];
     }

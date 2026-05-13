@@ -19,7 +19,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'text' => fake()->text(200),
+            'text' => fake()->sentence(),
             'article_id' => Article::inRandomOrder()->first()->id,
             'user_id' => User::inRandomOrder()->first()->id,
         ];

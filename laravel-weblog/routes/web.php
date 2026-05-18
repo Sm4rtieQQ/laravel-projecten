@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
+use Dom\Comment;
 
 Route::redirect('/', '/articles');
 
@@ -23,7 +24,11 @@ Route::controller(ArticleController::class)->group(function () {
     Route::get('/articles/{article}', 'show')->name('articles.show');
     Route::get('/articles/{article}/edit', 'edit')->middleware('auth')->name('articles.edit');
     Route::post('/articles', 'store')->middleware('auth')->name('articles.store');
+    Route::put('/articles/{article}', 'update')->middleware('auth')->name('articles.update');
     Route::delete('/articles/{article}', 'destroy')->middleware('auth')->name('articles.destroy');
 });
 
-Route::post('/articles/{article}', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
+Route::controller(CommentController::class)->group(function () {
+    Route::post('/articles/{article}', 'store')->middleware('auth')->name('comments.store');
+    Route::delete('/articles/{article}/{comment}', 'destroy')->middleware('auth')->name('comments.destroy');
+});

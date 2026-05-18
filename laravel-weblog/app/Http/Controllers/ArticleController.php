@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+
 use App\Models\Article;
 
 class ArticleController extends Controller
@@ -22,7 +24,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $article = new Article();
+        $newArticle = true;
+        return view('articles.create', compact('article', 'newArticle'));
     }
 
     /**
@@ -53,16 +57,25 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        Gate::authorize('update', $article);
+        $newArticle = false;
         $edit = true;
-        return view('articles.show', compact('article', 'edit'));
+        return view('articles.show', compact('article', 'newArticle', 'edit'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        Gate::authorize('update', $article);
+
+        $article->update([
+            'name' => $request->input('name'),
+            'text' => $request->input('text'),
+        ]);
+        $newArticle = false;
+        return view('articles.show', compact('article', 'newArticle'));
     }
 
     /**

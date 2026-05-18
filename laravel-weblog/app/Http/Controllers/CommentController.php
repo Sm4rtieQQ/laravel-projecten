@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Comment;
 use App\Models\Article;
-use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -66,9 +67,11 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comment $comment, Article $article)
+    public function destroy(Article $article, Comment $comment)
     {
+        Gate::authorize('delete', $comment);
+
         $comment->delete();
-        return redirect()->back();
+        return redirect()->route('articles.show', compact('article'));
     }
 }

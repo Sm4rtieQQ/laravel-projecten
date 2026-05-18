@@ -5,5 +5,5 @@
 @section('content')
 <h1 class="h1">Nieuw artikel aanmaken</h1>
 
-@include('articles.edit')
+@include('forms.edit')
 @endsection

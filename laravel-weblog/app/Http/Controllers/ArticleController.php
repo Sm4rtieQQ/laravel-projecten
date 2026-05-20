@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Article;
 
@@ -34,10 +35,18 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        $path = null;
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('articles', 'public');
+        };
+
         $article = new Article();
-        $article->name = $request->input('name');
-        $article->text = $request->input('text');
-        $article->user_id = Auth::id();
+        $article->fill([
+            "name" => $request->input('name'),
+            "text" => $request->input('text'),
+            "image" => $path,
+            "user_id" => Auth::id(),
+        ]);
         $article->save();
 
         return redirect()->route('articles.index');
@@ -70,10 +79,20 @@ class ArticleController extends Controller
     {
         Gate::authorize('update', $article);
 
-        $article->update([
+        $articleData = [
             'name' => $request->input('name'),
             'text' => $request->input('text'),
-        ]);
+        ];
+
+        if ($request->hasFile('image')) {
+            if ($article->image) {
+                Storage::disk('public')->delete($article->image);
+            }
+            $articleData['image'] = $request->file('image')->store('articles', 'public');
+        }
+
+        $article->update($articleData);
+
         $newArticle = false;
         return view('articles.show', compact('article', 'newArticle'));
     }
@@ -85,6 +104,6 @@ class ArticleController extends Controller
     {
         $article->comments()->delete();
         $article->delete();
-        return redirect()->back();
+        return redirect()->route('dashboard');
     }
 }

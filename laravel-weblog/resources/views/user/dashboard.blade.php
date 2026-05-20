@@ -16,6 +16,9 @@
             <span class="text-xs ml-auto">{{ $article->created_at->format('d-m-Y H:i') }}</span>
         </div>
         <p class="pb-2">{{ $article->text }}</p>
+        @isset($article->image)
+        <img src="{{Storage::url($article->image)}}" class="mx-auto my-4 w-100 rounded-xl shadow-lg">
+        @endisset
         <div class="flex">
             <span class="text-xs">{{ count($article->comments) }} reacties</span>
             <span class="flex ml-auto">

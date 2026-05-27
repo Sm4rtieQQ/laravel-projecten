@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Article;
+use App\Models\Category;
 
 class ArticleController extends Controller
 {
@@ -27,7 +28,8 @@ class ArticleController extends Controller
     {
         $article = new Article();
         $newArticle = true;
-        return view('articles.create', compact('article', 'newArticle'));
+        $categories = Category::getCategories();
+        return view('articles.create', compact('article', 'newArticle', 'categories'));
     }
 
     /**
@@ -35,11 +37,13 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        // image
         $path = null;
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('articles', 'public');
         };
 
+        // article
         $article = new Article();
         $article->fill([
             "name" => $request->input('name'),
@@ -48,6 +52,10 @@ class ArticleController extends Controller
             "user_id" => Auth::id(),
         ]);
         $article->save();
+
+        // category
+        $categories = $request->input('categories', []);
+        $article->categories()->attach($categories);
 
         return redirect()->route('articles.index');
     }
@@ -69,7 +77,9 @@ class ArticleController extends Controller
         Gate::authorize('update', $article);
         $newArticle = false;
         $edit = true;
-        return view('articles.show', compact('article', 'newArticle', 'edit'));
+        $categories = Category::getCategories();
+        $selectedCategories = $article->categories->pluck('id')->toArray();
+        return view('articles.show', compact('article', 'newArticle', 'edit', 'categories', 'selectedCategories'));
     }
 
     /**
@@ -92,6 +102,9 @@ class ArticleController extends Controller
         }
 
         $article->update($articleData);
+
+        $categories = $request->input('categories', []);
+        $article->categories()->sync($categories);
 
         $newArticle = false;
         return view('articles.show', compact('article', 'newArticle'));

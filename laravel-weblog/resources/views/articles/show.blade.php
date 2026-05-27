@@ -11,7 +11,7 @@
     <div class="flex">
         <h1 class="h1 mb-1 mr-5">{{ $article->name }}</h1>
         <div class="flex gap-1">
-            @foreach($article->categories as $category)
+            @foreach($article->categories->sortBy('name') as $category)
             <p class="wrap bg-green-200 px-2 py-1 round-1 text-sm font-semibold my-0">{{$category->name}}</p>
             @endforeach
         </div>

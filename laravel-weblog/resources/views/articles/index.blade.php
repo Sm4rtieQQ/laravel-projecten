@@ -5,13 +5,16 @@
 @section('content')
 <h1 class="h1">Overzicht</h1>
 <span class="text-sm italic">{{ count($articles) }} Artikelen gevonden</span>
+<ul class="dropdown-menu"></ul>
+
+
 @foreach($articles as $article)
 <a href="{{ route('articles.show', $article->id) }}">
     <div class="wrap bg-green-200 hover:bg-green-300">
         <div class="flex">
             <h4 class="text-lg font-bold mb-1 mr-5">{{ $article->name }}</h4>
             <div class="flex gap-1">
-                @foreach($article->categories as $category)
+                @foreach($article->categories->sortBy('name') as $category)
                 <p class="wrap px-2 py-1 round-1 text-sm font-semibold my-0">{{$category->name}}</p>
                 @endforeach
             </div>

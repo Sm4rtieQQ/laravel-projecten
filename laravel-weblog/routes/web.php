@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 
@@ -26,6 +27,8 @@ Route::controller(ArticleController::class)->group(function () {
     Route::put('/articles/{article}', 'update')->middleware('auth')->name('articles.update');
     Route::delete('/articles/{article}', 'destroy')->middleware('auth')->name('articles.destroy');
 });
+
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
 
 Route::controller(CommentController::class)->group(function () {
     Route::post('/articles/{article}', 'store')->middleware('auth')->name('comments.store');

@@ -1,37 +1,60 @@
-<form action="{{ $newArticle ? route('articles.store') : route('articles.update', $article) }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @if(!$newArticle)
-    @method('PUT')
-    @endif
+<div class="wrap">
 
-    <div class="wrap">
-        <div class="p-4 flex justify-between">
+    <form action="{{ $newArticle ? route('articles.store') : route('articles.update', $article) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @if(!$newArticle)
+        @method('PUT')
+        @endif
+
+        <div class=" grid grid-cols-[120px_auto] gap-2">
             <label class="font-bold" for="name">Titel</label>
-            <input class="bg-white w-11/12" name="name" id="name" type="text" value="{{ old('name', $article->name) }}" required />
-        </div>
-        <div class="p-4 flex justify-between">
+            <input class="bg-white px-2" name="name" id="name" type="text" value="{{ old('name', $article->name) }}" required />
             <label class="font-bold" for="text">Tekst</label>
-            <textarea class="bg-white w-11/12 h-64" name="text" id="text" type="text" required>{{ old('text', $article->text) }}</textarea>
+            <textarea class="bg-white h-64 px-2" name="text" id="text" type="text" required>{{ old('text', $article->text) }}</textarea>
         </div>
-        <div class="p-4 flex justify-between">
-            <label class="font-bold" for="image">Afbeelding</label>
-            <div class="flex items-center gap-2 min-w-0">
-                <div class="flex items-center gap-2 min-w-0">
-                    <span id="image-name" class="text-sm">{{$article->image ? 'Huidige afbeelding' : 'Geen bestand gekozen' }}</span>
-                    <label class="btn-neutral" for="image">Bladeren...</label>
-                    <input class="hidden" name="image" id="image" type="file" accept="image/*" onchange="handleImageChange(this)">
+
+        <div class="grid grid-cols-2 gap-10 my-6">
+            <div class="grid grid-cols-[120px_auto] gap-2">
+                <label class="font-bold" for="image">Afbeelding</label>
+                <div class="flex flex-col gap-2">
+                    <div class="flex ml-auto items-center gap-2">
+                        <span id="image-name" class="text-sm">{{$article->image ? 'Huidige afbeelding' : 'Geen bestand gekozen' }}</span>
+                        <label class="btn-neutral" for="image">Bladeren...</label>
+                        <input class="hidden" name="image" id="image" type="file" accept="image/*" onchange="handleImageChange(this)">
+                    </div>
+                    <div id="image-preview-wrapper" class="{{ $article->image ? '' : 'hidden' }}">
+                        <img id="image-preview" src="{{ $article->image ? Storage::url($article->image) : '' }}" class="rounded shadow-lg">
+                    </div>
                 </div>
             </div>
+            <div class="grid grid-cols-[120px_auto]">
+                <label class="font-bold" for="categories">Categorieën</label>
+                <div>
+                    <div class="flex flex-wrap">
+                        @foreach($categories as $category)
+                        <div class="m-1">
+                            <input class="peer hidden" type="checkbox" name="categories[]" id="box-{{$category->id}}" value="{{$category->id}}" {{ in_array($category->id, $selectedCategories ?? []) ? 'checked' : '' }} />
+                            <label for="box-{{$category->id}}" class="wrap cursor-pointer select-none px-2 py-1 text-sm font-semibold bg-gray-200 peer-checked:bg-green-300">{{$category->name}} </label>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="flex">
+                <button class="btn-submit" type="submit">Opslaan</button>
+                <a class="btn-cancel" href="{{ url()->previous() }}">Annuleren</a>
+            </div>
+    </form>
+    <form action="{{route('categories.store')}}" method="POST">
+        <div class="flex justify-end">
+            <input class="bg-white px-2 text-sm" name="newCategory" id="newCategory" type="text" required placeholder="nieuwe categorie" />
+            <button class="btn-submit py-1" type="submit" id="addCategoryBtn">toevoegen</button>
         </div>
-        <div id="image-preview-wrapper" class="{{ $article->image ? '' : 'hidden' }}">
-            <img id="image-preview" src="{{ $article->image ? Storage::url($article->image) : '' }}" class="w-64 object-cover rounded shadow-lg ml-auto">
-        </div>
-    </div>
-    <button class="btn-submit" type="submit">Opslaan</button>
-    <a class="btn-cancel" href="{{ url()->previous() }}">Annuleren</a>
+</div>
 </form>
+</div>
 
-
+<!-- image preview -->
 <script>
     function handleImageChange(input) {
         document.getElementById('image-name').textContent = input.files[0]?.name ?? 'Geen bestand gekozen';

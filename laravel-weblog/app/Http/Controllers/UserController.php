@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -10,15 +11,9 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function authenticate(Request $request): RedirectResponse
+    public function authenticate(UserRequest $request): RedirectResponse
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ], [
-            'email.required' => 'A.u.b. een geldig email adres invoeren.',
-            'password.required' => 'A.u.b. een wachtwoord invoeren.',
-        ]);
+        $credentials = $request->validated();
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -27,7 +22,7 @@ class UserController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'Email of wachtwoord onjuist.',
+            'password' => 'Email of wachtwoord onjuist.',
         ])->onlyInput('email');
     }
 

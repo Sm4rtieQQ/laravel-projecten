@@ -8,9 +8,19 @@
 
         <div class=" grid grid-cols-[120px_auto] gap-2">
             <label class="font-bold" for="name">Titel</label>
-            <input class="bg-white px-2" name="name" id="name" type="text" value="{{ old('name', $article->name) }}" required />
+            <div class="grid">
+                <input class="bg-white px-2" name="name" id="name" type="text" value="{{ old('name', $article->name) }}" />
+                @error('name')
+                <span class="text-red-700 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
             <label class="font-bold" for="text">Tekst</label>
-            <textarea class="bg-white h-64 px-2" name="text" id="text" type="text" required>{{ old('text', $article->text) }}</textarea>
+            <div class="grid">
+                <textarea class="bg-white h-64 px-2" name="text" id="text" type="text">{{ old('text', $article->text) }}</textarea>
+                @error('text')
+                <span class="text-red-700 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
         </div>
 
         <div class="grid grid-cols-2 gap-10 my-6">
@@ -47,7 +57,7 @@
     </form>
     <form action="{{route('categories.store')}}" method="POST">
         <div class="flex justify-end">
-            <input class="bg-white px-2 text-sm" name="newCategory" id="newCategory" type="text" required placeholder="nieuwe categorie" />
+            <input class="bg-white px-2 text-sm" name="newCategory" id="newCategory" type="text" placeholder="nieuwe categorie" />
             <button class="btn-submit py-1" type="submit" id="addCategoryBtn">toevoegen</button>
         </div>
 </div>

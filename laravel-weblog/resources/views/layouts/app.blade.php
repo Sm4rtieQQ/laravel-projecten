@@ -9,7 +9,7 @@
 
 <body class="bg-gray-50">
     @include('partials.nav')
-    <div class="p-4 px-auto max-w-screen-xl mx-auto">
+    <div class="grid p-4 max-w-screen-xl mx-auto">
         @yield('content')
     </div>
 </body>

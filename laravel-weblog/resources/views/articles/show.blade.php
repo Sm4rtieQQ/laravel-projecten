@@ -66,7 +66,7 @@
     <h4 class="font-semibold">Neem deel aan het gesprek</h4>
     <form action="{{route('comments.store', $article)}}" method="POST">
         @csrf
-        <textarea class="bg-white w-full h-32 my-4" name="newComment" id="newComment" type="text" required></textarea>
+        <textarea class="bg-white w-full h-32 my-4" name="newComment" id="newComment" type="text"></textarea>
         <button class="btn-submit" type="submit">Plaats reactie</button>
     </form>
     @else

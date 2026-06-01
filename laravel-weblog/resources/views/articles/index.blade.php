@@ -5,8 +5,19 @@
 @section('content')
 <h1 class="h1">Overzicht</h1>
 <span class="text-sm italic">{{ count($articles) }} Artikelen gevonden</span>
-<ul class="dropdown-menu"></ul>
-
+<form action="{{ route('articles.index') }}" method="GET">
+    @csrf
+    @foreach($categories as $category)
+    <div class="m-1">
+        <input class="peer hidden" type="checkbox" name="categories[]" id="{{$category->id}}" value="{{$category->id}}" {{ in_array($category->id, $selectedCategories ?? []) ? 'checked' : '' }} />
+        <label for="{{$category->id}}" class="wrap cursor-pointer select-none px-2 py-1 text-sm font-semibold bg-gray-200 peer-checked:bg-green-300">{{$category->name}} </label>
+    </div>
+    @endforeach
+    <button class="btn-submit" type="submit">Filter toepassen</button>
+    @if(!empty($selectedCategories))
+    <a class="btn-cancel" href="{{ route('articles.index') }}">Filters verwijderen</a>
+    @endif
+</form>
 
 @foreach($articles as $article)
 <a href="{{ route('articles.show', $article->id) }}">

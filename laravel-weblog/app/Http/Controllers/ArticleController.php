@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -15,10 +16,23 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::orderBy('created_at', 'desc')->get();
-        return view('articles.index', compact('articles'));
+        $categories = Category::getCategories();
+        $selectedCategories = $request->input('categories', []);
+
+        $articles = Article::orderBy('created_at', 'desc')
+            ->when(!empty($selectedCategories), function ($query) use ($selectedCategories) {
+                foreach ($selectedCategories as $categoryId) {
+                    $query->whereHas('categories', function ($query) use ($categoryId) {
+                        $query->where('categories.id', $categoryId);
+                    });
+                }
+            })
+            ->get();
+
+
+        return view('articles.index', compact('articles', 'categories', 'selectedCategories'));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -36,18 +37,12 @@ class UserController extends Controller
         return redirect()->route('articles.index');
     }
 
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed'],
-        ]);
-
         User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
         ]);
 
         return view('user.login');

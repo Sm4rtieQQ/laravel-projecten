@@ -23,7 +23,7 @@ class ArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:3|max:255',
+            'name' => 'required|min:3|max:63',
             'text' => 'required|min:12',
         ];
     }
@@ -33,7 +33,7 @@ class ArticleRequest extends FormRequest
         return [
             'name.required' => 'Dit veld is verplicht.',
             'name.min' => 'De titel moet ten minste 3 karakters bevatten.',
-            'name.max' => 'De titel mag maximaal 255 karakters bevatten.',
+            'name.max' => 'De titel mag maximaal 63 karakters bevatten.',
             'text.required' => 'Dit veld is verplicht.',
             'text.min' => 'De tekst moet ten minste 12 karakters bevatten.'
         ];

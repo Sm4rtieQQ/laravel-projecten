@@ -1,4 +1,4 @@
-<nav class="p-4 bg-green-300 text-gray-600 font-bold flex space-x-5 sticky top-0 shadow-md">
+<nav class="p-4 bg-green-300 text-gray-600 font-bold flex space-x-5 sticky top-0 shadow-md z-50">
     <a href="{{ route('articles.index') }}" class="navlink">Overzicht</a>
     @auth
     <a href="{{ route('articles.create') }}" class="navlink">Nieuw artikel</a>

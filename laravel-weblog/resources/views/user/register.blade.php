@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Register')
+@section('title', 'Registreren')
 
 @section('content')
 
-<div class=" max-w-[500px] justify-self-center">
+<div class="w-[500px] justify-self-center">
     <h1 class="h1">Nieuwe gebruiker</h1>
 
     <form action="{{ route('user.store') }}" method="POST">

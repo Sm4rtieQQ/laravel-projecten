@@ -16,6 +16,8 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
     Route::get('/register', 'register')->name('register');
     Route::post('/register', 'store')->name('user.store');
+    Route::get('/shop', 'shop')->middleware('auth')->name('shop');
+    Route::put('/shop', 'update_type')->middleware('auth')->name('user.type');
 });
 
 Route::controller(ArticleController::class)->group(function () {

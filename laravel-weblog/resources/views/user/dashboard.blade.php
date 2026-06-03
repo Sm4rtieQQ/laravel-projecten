@@ -3,7 +3,21 @@
 @section('title', auth()->user()->name)
 
 @section('content')
-<h1 class="h1">Welkom, {{ auth()->user()->name }}</h1>
+<div class="grid grid-cols-2">
+    <h1 class="h1">Welkom, {{ auth()->user()->name }}</h1>
+
+    <div class="ml-auto">
+        <div class="flex gap-2 items-center mb-4">
+            <span class="text-sm">Account:</span>
+            @if(auth()->user()->is_premium)
+            <span class="wrap tag premium">premium</span>
+            @else
+            <span class="wrap tag">gratis</span>
+            @endif
+        </div>
+        <a class="btn-neutral" href="{{route('shop')}}">Wijzig accounttype</a>
+    </div>
+</div>
 
 <div class="pb-4">
     <h4 class="font-semibold">Mijn artikelen</h4>
@@ -15,8 +29,11 @@
             <h4 class="font-semibold mr-5">{{$article->name}}</h4>
             <div class="flex gap-1">
                 @foreach($article->categories as $category)
-                <p class="wrap bg-green-200 px-2 py-1 round-1 text-sm font-semibold my-0">{{$category->name}}</p>
+                <span class="wrap bg-green-200 tag">{{$category->name}}</span>
                 @endforeach
+                @if($article->premium)
+                <span class="wrap tag premium">premium</span>
+                @endif
             </div>
             <span class="text-xs ml-auto">{{ $article->created_at->format('d-m-Y H:i') }}</span>
         </div>

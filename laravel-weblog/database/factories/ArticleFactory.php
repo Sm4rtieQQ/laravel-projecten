@@ -26,6 +26,7 @@ class ArticleFactory extends Factory
                 UploadedFile::fake()->image('article.jpg', 640, 480)->store('articles', 'public')
             ),
             'user_id' => User::inRandomOrder()->first()->id,
+            'premium' => fake()->boolean(40),
         ];
     }
 }

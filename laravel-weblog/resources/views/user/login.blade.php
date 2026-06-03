@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Login')
+@section('title', 'Inloggen')
 
 @section('content')
-<div class=" max-w-[500px] justify-self-center">
+<div class="w-[500px] justify-self-center">
     <h1 class="h1">Inloggen</h1>
 
     <form action="{{route('user.auth')}}" method="POST">

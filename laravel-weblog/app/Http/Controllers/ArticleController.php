@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -29,6 +29,9 @@ class ArticleController extends Controller
                     });
                 }
             })
+            ->when(!Auth::check() || !Auth::user()->is_premium, function ($query) {
+                $query->where('premium', false);
+            })
             ->get();
 
 
@@ -51,6 +54,7 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
+        // dd($request);
         // image
         $path = null;
         if ($request->hasFile('image')) {
@@ -63,6 +67,7 @@ class ArticleController extends Controller
             "name" => $request->input('name'),
             "text" => $request->input('text'),
             "image" => $path,
+            "premium" => $request->boolean('premium'),
             "user_id" => Auth::id(),
         ]);
         $article->save();
@@ -106,6 +111,7 @@ class ArticleController extends Controller
         $articleData = [
             'name' => $request->input('name'),
             'text' => $request->input('text'),
+            'premium' => $request->boolean('premium'),
         ];
 
         if ($request->hasFile('image')) {

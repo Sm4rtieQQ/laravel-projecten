@@ -42,4 +42,12 @@
     .btn-neutral {
         @apply bg-gray-200 hover:bg-gray-300;
     }
+
+    .tag {
+        @apply px-2 py-1 text-sm font-semibold my-0;
+    }
+
+    .premium {
+        @apply bg-gradient-to-bl from-orange-100 to-amber-300;
+    }
 }

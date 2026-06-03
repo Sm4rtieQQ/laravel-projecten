@@ -44,22 +44,29 @@
                         @foreach($categories as $category)
                         <div class="m-1">
                             <input class="peer hidden" type="checkbox" name="categories[]" id="box-{{$category->id}}" value="{{$category->id}}" {{ in_array($category->id, $selectedCategories ?? []) ? 'checked' : '' }} />
-                            <label for="box-{{$category->id}}" class="wrap cursor-pointer select-none px-2 py-1 text-sm font-semibold bg-gray-200 peer-checked:bg-green-300">{{$category->name}} </label>
+                            <label for="box-{{$category->id}}" class="wrap tag cursor-pointer select-none bg-gray-200 peer-checked:bg-green-300">{{$category->name}} </label>
                         </div>
                         @endforeach
                     </div>
                 </div>
             </div>
-            <div class="flex">
-                <button class="btn-submit" type="submit">Opslaan</button>
-                <a class="btn-cancel" href="{{ url()->previous() }}">Annuleren</a>
+            <div>
+                <input class="peer hidden" type="checkbox" name="premium" id="premium" value="1" {{ old("premium", $article->premium) ? 'checked' : '' }} />
+                <label for="premium" class="wrap tag peer-checked:bg-amber-300 bg-gray-200 cursor-pointer select-none">Premium content</label>
+                <div class="flex mt-2">
+                    <button class="btn-submit m-0" type="submit">Opslaan</button>
+                    <a class="btn-cancel" href="{{ url()->previous() }}">Annuleren</a>
+                </div>
             </div>
     </form>
     <form action="{{route('categories.store')}}" method="POST">
-        <div class="flex justify-end">
+        <div class="flex">
             <input class="bg-white px-2 text-sm" name="newCategory" id="newCategory" type="text" placeholder="nieuwe categorie" />
-            <button class="btn-submit py-1" type="submit" id="addCategoryBtn">toevoegen</button>
+            <button class="btn-submit py-1" type="submit" id="addCategoryBtn">Toevoegen</button>
         </div>
+        @error('newCategory')
+        <span class="text-red-700 text-sm">{{ $message }}</span>
+        @enderror
 </div>
 </form>
 </div>

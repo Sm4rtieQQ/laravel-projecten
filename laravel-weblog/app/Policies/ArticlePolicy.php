@@ -19,9 +19,10 @@ class ArticlePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Article $article): bool
+    public function view(?User $user, Article $article): bool
     {
-        return false;
+        if ($article->premium) return $user?->is_premium ?? false;
+        return true;
     }
 
     /**
@@ -45,7 +46,7 @@ class ArticlePolicy
      */
     public function delete(User $user, Article $article): bool
     {
-        return false;
+        return $user->id === $article->user_id;
     }
 
     /**

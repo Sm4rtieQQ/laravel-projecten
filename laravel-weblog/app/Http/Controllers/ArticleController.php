@@ -54,7 +54,6 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        // dd($request);
         // image
         $path = null;
         if ($request->hasFile('image')) {
@@ -84,6 +83,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        Gate::authorize('view', $article);
+
         $comments = $article->comments()->orderBy('created_at', 'desc');
         return view('articles.show', compact('article', 'comments'));
     }

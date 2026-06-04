@@ -1,0 +1,66 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="jiwYARmHjlTN77bejqZz">
+    <mxGraphModel dx="981" dy="830" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="0nRHvzc9mKHs6scBnFum-23" edge="1" parent="1" source="0nRHvzc9mKHs6scBnFum-1" style="edgeStyle=none;curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#A8201A;fontSize=12;fontColor=#143642;startSize=8;endSize=8;fillColor=#FAE5C7;startArrow=classic;startFill=1;" target="0nRHvzc9mKHs6scBnFum-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#b0e3e6;strokeColor=#0e8088;" value="DATABASE" vertex="1">
+          <mxGeometry height="60" width="120" x="340" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-3" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=1;labelBackgroundColor=none;fontColor=#143642;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Laravel-Weblog&lt;/h1&gt;&lt;p&gt;Toevoegen van een post&lt;/p&gt;" vertex="1">
+          <mxGeometry height="80" width="240" x="40" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-13" edge="1" parent="1" source="0nRHvzc9mKHs6scBnFum-8" style="edgeStyle=none;curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontSize=12;fontColor=#143642;startSize=8;endSize=8;fillColor=#FAE5C7;endArrow=none;endFill=0;" target="0nRHvzc9mKHs6scBnFum-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" value="&lt;b&gt;NAV&lt;/b&gt;&lt;div&gt;nav.blade.php&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;De navigatiebalk&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="120" x="40" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-20" edge="1" parent="1" source="0nRHvzc9mKHs6scBnFum-9" style="edgeStyle=none;curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontSize=12;fontColor=#143642;startSize=8;endSize=8;fillColor=#FAE5C7;endArrow=none;endFill=0;" target="0nRHvzc9mKHs6scBnFum-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" value="&lt;b&gt;CREATE&lt;/b&gt;&lt;div&gt;create.blade.php&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Pagina voor het aanmaken van de post&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="160" x="320" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-24" edge="1" parent="1" source="0nRHvzc9mKHs6scBnFum-10" style="edgeStyle=none;curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontSize=12;fontColor=#143642;startSize=8;endSize=8;fillColor=#FAE5C7;" target="0nRHvzc9mKHs6scBnFum-22" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" value="&lt;b&gt;FORM&lt;/b&gt;&lt;div&gt;edit.blade.php&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Pagina voor het aanmaken of aanpassen van een post&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="160" x="640" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-14" edge="1" parent="1" source="0nRHvzc9mKHs6scBnFum-16" style="edgeStyle=none;curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontSize=12;fontColor=#143642;startSize=8;endSize=8;fillColor=#FAE5C7;" target="0nRHvzc9mKHs6scBnFum-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="417" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-28" edge="1" parent="1" source="0nRHvzc9mKHs6scBnFum-12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontSize=12;fontColor=#143642;startSize=8;endSize=8;fillColor=#FAE5C7;dashed=1;dashPattern=1 2;endArrow=none;endFill=0;" target="0nRHvzc9mKHs6scBnFum-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fillColor=#fad9d5;strokeColor=#ae4132;labelBackgroundColor=none;" value="&lt;div&gt;&lt;b&gt;CONTROLLER&lt;/b&gt;&lt;/div&gt;&lt;div&gt;ArticleController.php&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Behandeld alle logica m.b.t. artikelen&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="160" x="320" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-16" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#ae4132;fillColor=#fad9d5;align=center;verticalAlign=middle;rounded=1;" value="Gebruiker ingelogd?" vertex="1">
+          <mxGeometry height="30" width="80" x="200" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-21" edge="1" parent="1" source="0nRHvzc9mKHs6scBnFum-17" style="edgeStyle=none;curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontSize=12;fontColor=#143642;startSize=8;endSize=8;fillColor=#FAE5C7;" target="0nRHvzc9mKHs6scBnFum-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-17" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#ae4132;fillColor=#fad9d5;align=center;verticalAlign=middle;rounded=1;" value="Nieuw artikel?" vertex="1">
+          <mxGeometry height="30" width="80" x="520" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" value="&lt;b&gt;FORM&lt;/b&gt;&lt;div&gt;edit.blade.php&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Pagina voor het aanmaken of aanpassen van een post&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="160" x="640" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-27" edge="1" parent="1" source="0nRHvzc9mKHs6scBnFum-26" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontSize=12;fontColor=#143642;startSize=8;endSize=8;fillColor=#FAE5C7;dashed=1;dashPattern=1 2;endArrow=none;endFill=0;" target="0nRHvzc9mKHs6scBnFum-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0nRHvzc9mKHs6scBnFum-26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#bac8d3;strokeColor=#23445d;align=left;verticalAlign=top;spacing=10;" value="&lt;div align=&quot;left&quot;&gt;&lt;b&gt;ROUTES&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="160" x="320" y="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

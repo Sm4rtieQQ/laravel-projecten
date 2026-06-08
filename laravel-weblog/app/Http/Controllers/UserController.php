@@ -20,7 +20,7 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            return redirect()->intended('dashboard')->with('success', 'Succesvol ingelogd.');
         }
 
         return back()->withErrors([
@@ -47,7 +47,7 @@ class UserController extends Controller
             'is_premium' => false,
         ]);
 
-        return view('user.login');
+        return redirect()->route('login')->with('success', 'Account successvol aangemaakt!');
     }
 
     public function dashboard()

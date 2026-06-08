@@ -9,6 +9,9 @@
     <form action="{{route('user.auth')}}" method="POST">
         @csrf
         <div class="wrap">
+            @if(session('success'))
+            <span class="text-green-600 text-sm">{{session('success')}}</span>
+            @endif
             <div class="p-4 grid grid-cols-[120px_auto] gap-y-4">
 
                 <label class="font-bold" for="email">Email</label>

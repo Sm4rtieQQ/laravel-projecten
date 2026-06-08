@@ -95,6 +95,7 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         Gate::authorize('update', $article);
+
         $newArticle = false;
         $edit = true;
         $categories = Category::getCategories();
@@ -136,6 +137,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        Gate::authorize('delete', $article);
+
         $article->comments()->delete();
         $article->delete();
         return redirect()->route('dashboard');

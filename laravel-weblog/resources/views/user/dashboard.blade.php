@@ -3,9 +3,13 @@
 @section('title', auth()->user()->name)
 
 @section('content')
+
+@if(session('success'))
+<span class="text-green-600 text-sm">{{session('success')}}</span>
+@endif
+
 <div class="grid grid-cols-2">
     <h1 class="h1">Welkom, {{ auth()->user()->name }}</h1>
-
     <div class="ml-auto">
         <div class="flex gap-2 items-center mb-4">
             <span class="text-sm">Account:</span>

@@ -30,7 +30,7 @@ Route::controller(ArticleController::class)->group(function () {
     Route::delete('/articles/{article}', 'destroy')->middleware('auth')->name('articles.destroy');
 });
 
-Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::post('/categories', [CategoryController::class, 'store'])->middleware('auth')->name('categories.store');
 
 Route::controller(CommentController::class)->group(function () {
     Route::post('/articles/{article}', 'store')->middleware('auth')->name('comments.store');
